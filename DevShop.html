@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ElectroShop - Electronics Store</title>
+    <meta name="description" content="Your one-stop shop for the latest electronic gadgets and accessories.">
+    <meta name="keywords" content="electronics, smartphones, laptops, gadgets, accessories">
+    <meta name="author" content="ElectroShop">
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #6a11cb, #2575fc); /* Vibrant gradient background */
+            color: #fff;
+            overflow-x: hidden;
+            cursor: none; /* Hide default cursor */
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            color: #fff;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 10px 0 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #ffdd40; /* Yellow hover effect */
+        }
+
+        .hero {
+            text-align: center;
+            padding: 100px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            margin: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero h2 {
+            font-size: 2.5rem;
+            margin: 0;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin: 10px 0 0;
+        }
+
+        .categories, .products, .advertisement {
+            padding: 20px;
+            margin: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .categories h2, .products h2, .advertisement h2 {
+            font-size: 2rem;
+            margin: 0 0 20px;
+        }
+
+        .category-list, .product-list {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .category-item, .product-item {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            margin: 10px;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            width: 200px;
+        }
+
+        .category-item:hover, .product-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .category-item img, .product-item img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .category-item h3, .product-item h3 {
+            font-size: 1.2rem;
+            margin: 10px 0 0;
+            color: #fff;
+        }
+
+        .product-item p {
+            font-size: 1rem;
+            margin: 5px 0 0;
+            color: #ffdd40; /* Yellow price text */
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            margin-top: 20px;
+        }
+
+        footer p {
+            margin: 0;
+            color: #fff;
+        }
+
+        /* Magnetic Circle Cursor */
+        .cursor {
+            position: fixed;
+            width: 50px; /* Larger cursor */
+            height: 50px;
+            border: 2px solid #ffdd40; /* Yellow border */
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            transition: transform 0.1s ease, background 0.3s ease, box-shadow 0.3s ease;
+            z-index: 1000;
+            box-shadow: 0 0 20px rgba(255, 221, 64, 0.5); /* Glow effect */
+        }
+
+        .cursor.hover {
+            background: rgba(255, 221, 64, 0.3); /* Yellow background on hover */
+            transform: translate(-50%, -50%) scale(1.5);
+            box-shadow: 0 0 30px rgba(255, 221, 64, 0.8); /* Larger glow on hover */
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .hero {
+                padding: 50px 20px;
+            }
+
+            .hero h2 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .category-item, .product-item {
+                width: 100%;
+                margin: 10px 0;
+            }
+
+            .category-list, .product-list {
+                flex-direction: column;
+            }
+
+            .cursor {
+                width: 40px;
+                height: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Magnetic Circle Cursor -->
+    <div class="cursor" id="cursor"></div>
+
+    <header>
+        <h1>ElectroShop</h1>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#categories">Categories</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h2>Welcome to ElectroShop</h2>
+            <p>Your one-stop shop for all electronic gadgets.</p>
+        </section>
+
+        <section class="categories" id="categories">
+            <h2>Categories</h2>
+            <div class="category-list">
+                <a href="#smartphones" class="category-item magnetic">
+                    <img src="https://via.placeholder.com/200" alt="Smartphones">
+                    <h3>Smartphones</h3>
+                </a>
+                <a href="#laptops" class="category-item magnetic">
+                    <img src="https://via.placeholder.com/200" alt="Laptops">
+                    <h3>Laptops</h3>
+                </a>
+                <a href="#accessories" class="category-item magnetic">
+                    <img src="https://via.placeholder.com/200" alt="Accessories">
+                    <h3>Accessories</h3>
+                </a>
+            </div>
+        </section>
+
+        <section class="products" id="products">
+            <h2>Featured Products</h2>
+            <div class="product-list" id="product-list">
+                <!-- Products will be dynamically inserted here -->
+            </div>
+        </section>
+
+        <section class="advertisement">
+            <h2>Advertisement</h2>
+            <div id="ad-unit">
+                <!-- Google AdSense Ad Unit will be inserted here -->
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_AD_UNIT_ID"
+                    crossorigin="anonymous"></script>
+                <!-- Your Ad Unit Code Here -->
+            </div>
+        </section>
+    </main>
+
+    <footer id="contact">
+        <p>&copy; 2025 DevShop. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Magnetic Circle Cursor
+        const cursor = document.getElementById('cursor');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = `${e.pageX}px`;
+            cursor.style.top = `${e.pageY}px`;
+        });
+
+        // Add hover effect to cursor
+        const hoverElements = document.querySelectorAll('.magnetic');
+        hoverElements.forEach((element) => {
+            element.addEventListener('mouseenter', () => {
+                cursor.classList.add('hover');
+            });
+            element.addEventListener('mouseleave', () => {
+                cursor.classList.remove('hover');
+            });
+        });
+
+        // Dynamic Product Loading
+        const products = [
+            { id: 1, name: 'Smartphone X', category: 'smartphones', price: '$699', image: 'https://via.placeholder.com/200' },
+            { id: 2, name: 'Laptop Pro', category: 'laptops', price: '$1299', image: 'https://via.placeholder.com/200' },
+            { id: 3, name: 'Wireless Earbuds', category: 'accessories', price: '$199', image: 'https://via.placeholder.com/200' },
+            // Add more products as needed
+        ];
+
+        const productList = document.getElementById('product-list');
+
+        products.forEach(product => {
+            const productItem = document.createElement('div');
+            productItem.classList.add('product-item', 'magnetic');
+            productItem.innerHTML = `
+                <img src="${product.image}" alt="${product.name}">
+                <h3>${product.name}</h3>
+                <p>${product.price}</p>
+            `;
+            productList.appendChild(productItem);
+        });
+    </script>
+</body>
+</html>
